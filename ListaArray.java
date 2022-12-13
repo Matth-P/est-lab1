@@ -28,15 +28,15 @@ public class ListaArray implements EstruturaDeDados{
 
     @Override
     public boolean delete(int chave) {
-        contador = 0;
-        for (int i = 0; 1 < elementos.length; i++){
-            if(elementos[i] == chave){
-                contador++;
-                for (int c = i; c < elementos.length - 1; c++){
-                    elementos[c] = elementos[c+1];
-                }
-                i--;
+        if (elementos == null || chave < 0){
+            return false;
+        }
+        ListaArray r2 = new ListaArray();
+        for (int i = 0, k =0; i < elementos.length; i++){
+            if (i == chave){
+                continue;
             }
+            r2.elementos[k++] = elementos[i];
         }
         return true;
   
@@ -107,6 +107,7 @@ public class ListaArray implements EstruturaDeDados{
         System.out.println(r.search(0));
         System.out.println(r.minimum());
         System.out.println(r.maximum());
+        System.out.println(r.delete(20));
 
     }
 }
