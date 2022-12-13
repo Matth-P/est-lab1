@@ -6,7 +6,6 @@ public class ListaArray implements EstruturaDeDados{
     public ListaArray(){
         elementos = new int[100];
         contador = 0;
-
     }
 
     public int getElementos (int chave){
@@ -44,8 +43,10 @@ public class ListaArray implements EstruturaDeDados{
     
     @Override
     public boolean search(int chave) {
+        int index = 0;
         for (int i = 0; i < elementos.length; i++){
             if (elementos[i] == chave){
+                index = this.search(chave)
                 return true;
             }
         }
@@ -76,24 +77,20 @@ public class ListaArray implements EstruturaDeDados{
 
     @Override
     public int sucessor(int chave) {
-        int suc = chave;
-        for (int i = 0; i < elementos.length; i++){
-            if (chave == elementos[i] && elementos[i + 1] < elementos[100]){
-                    suc = elementos[i + 1];
+        if (search(chave) == true){
+            for (i = 0; i < elementos.length; i++){
+
             }
+            return elementos[i+1];
         }
-        return suc;
     }
 
     @Override
     public int prodessor(int chave) {
-        int prod = chave;
-        for (int i = 0; i < elementos.length; i++){
-            if (chave == elementos[i] && elementos[i - 1] > elementos[0]){
-                    prod = elementos[i - 1];
-            }
+        chave = elementos[i];
+        if (search(chave) == true){
+            return elementos[i-1];
         }
-        return prod;
     }
 
     public static void main(String[] args) {
@@ -108,6 +105,8 @@ public class ListaArray implements EstruturaDeDados{
         System.out.println(r.minimum());
         System.out.println(r.maximum());
         System.out.println(r.delete(20));
+        System.out.println(r.sucessor(90));
+        System.out.println(r.prodessor(20));
 
     }
 }
