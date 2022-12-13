@@ -16,7 +16,7 @@ public class ListaArray implements EstruturaDeDados{
 
     @Override
     public boolean insert(int chave) {
-        if (contador > 100){
+        if (contador > elementos.length){
             return false;
         }
         else{
@@ -28,11 +28,23 @@ public class ListaArray implements EstruturaDeDados{
 
     @Override
     public boolean delete(int chave) {
-    }
-
+        contador = 0;
+        for (int i = 0; 1 < elementos.length; i++){
+            if(elementos[i] == chave){
+                contador++;
+                for (int c = i; c < elementos.length - 1; c++){
+                    elementos[c] = elementos[c+1];
+                }
+                i--;
+            }
+        }
+        return true;
+  
+    }    
+    
     @Override
     public boolean search(int chave) {
-        for (int i = 0; i < 100; i++){
+        for (int i = 0; i < elementos.length; i++){
             if (elementos[i] == chave){
                 return true;
             }
@@ -42,28 +54,59 @@ public class ListaArray implements EstruturaDeDados{
 
     @Override
     public int minimum() {
-        return 0;
+        int valMin = 0;
+        for (int i = 0; i < elementos.length; i++) {
+            if (elementos[i] < elementos[0]){
+                valMin = elementos[i];
+            }    
+        }
+        return valMin;
     }
 
     @Override
     public int maximum() {
-        return 0;
+        int valMax = 0;
+        for (int i = 0; i < elementos.length; i++){
+            if (elementos[i] > elementos[0]){
+                valMax = elementos[i];
+            }
+        }
+        return valMax;
     }
 
     @Override
     public int sucessor(int chave) {
-        return 0;
+        int suc = chave;
+        for (int i = 0; i < elementos.length; i++){
+            if (chave == elementos[i] && elementos[i + 1] < elementos[100]){
+                    suc = elementos[i + 1];
+            }
+        }
+        return suc;
     }
 
     @Override
     public int prodessor(int chave) {
-        return 0;
+        int prod = chave;
+        for (int i = 0; i < elementos.length; i++){
+            if (chave == elementos[i] && elementos[i - 1] > elementos[0]){
+                    prod = elementos[i - 1];
+            }
+        }
+        return prod;
     }
 
     public static void main(String[] args) {
         ListaArray r = new ListaArray();
-        r.insert(1);
-        System.out.println(r.getElementos(0));
-        r.search(1);
+        r.insert(80);
+        r.insert(90);
+        r.insert(10);
+        r.insert(20);
+        r.insert(30);
+        System.out.println(r.search(20));
+        System.out.println(r.search(0));
+        System.out.println(r.minimum());
+        System.out.println(r.maximum());
+
     }
 }
