@@ -1,18 +1,22 @@
-public class No {
-    private int value;
-    private No next;
+public class No{
+    private int valor;
+    private No proximo;
 
-    public No(int valor){
+    public No(int valor) {
         this.valor = valor;
-        next = null;
+        proximo = null;
     }
 
-    public No getNext(){
-        return next;
+    public No getProximo(){
+        return proximo;
     }
 
-    public int getValue(){
-        return value;
+    public void setProximo(No novo) {
+        proximo = novo;
+    }
+
+    public int getValor() {
+        return valor;
     }
 }
 
