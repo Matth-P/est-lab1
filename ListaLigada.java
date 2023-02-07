@@ -94,32 +94,47 @@ public class ListaLigada implements EstruturaDeDados{
         }
     }
 
+
+
     public static void main(String[] args) {
-        for (int i = 0; i < 100; i++) {
-            System.out.println(i);
-            if (i == 50){
-                break;
-            }
-        }
-        System.out.println("fim");
+        ListaLigada r = new ListaLigada();
+        r.insert(10);
+        r.insert(20);
+        r.insert(30);
+        r.delete(40);
+        System.out.println(r.search(40));
     }
 
     @Override
     public boolean insert(int chave) {
-        // TODO Auto-generated method stub
-        return false;
+        if (inicio == null){
+            inicio = new No(chave);
+        }
+        else{
+            insere(inicio, chave);
+        }
+        return true;
     }
 
     @Override
     public boolean delete(int chave) {
-        // TODO Auto-generated method stub
-        return false;
+        if (inicio == null){
+            return false;
+        }
+        remover(chave);
+        return true;
     }
 
     @Override
     public boolean search(int chave) {
-        // TODO Auto-generated method stub
-        return false;
+        if (inicio == null){
+            return false;
+        }    
+        else if (procura(chave) == true){
+            System.out.println(chave.getValor())
+            return true;
+        }
+        return false;   
     }
 
     @Override

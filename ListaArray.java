@@ -46,7 +46,7 @@ public class ListaArray implements EstruturaDeDados{
         int index = 0;
         for (int i = 0; i < elementos.length; i++){
             if (elementos[i] == chave){
-                index = this.search(chave)
+                index = this.search(chave);
                 return true;
             }
         }
