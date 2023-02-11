@@ -95,6 +95,67 @@ public class ListaLigada implements EstruturaDeDados{
     }
 
 
+    public int suc(No n, int valor){
+        int suc = valor;
+        if (n.getProximo() == null){
+            suc = valor;
+            return suc;
+        } else if (n.getValor() == valor) {
+            suc = n.getProximo().getValor();
+            return suc;
+        } else {
+            return suc(n.getProximo(), valor);
+        }
+    }
+
+    public int ant(No n, int valor){
+        int ant = valor;
+        if (n.getValor() == valor) {
+            ant = 0;
+            return ant;
+        } else if(n.getProximo().getValor() == valor){
+            ant = n.getValor();
+            return ant;
+        } else {
+           return ant(n.getProximo(), valor);
+        }
+    }
+
+    public int min(No n){
+        int min = n.getValor();
+        if (n.getProximo() == null){
+            min = n.getValor();
+            return min;
+        }
+        else if (n.getProximo().getValor() >= n.getValor()){
+            min = n.getValor();
+            return min;
+        }
+        else {
+           return min(n.getProximo());
+        }
+    }
+
+    public int max(No n){
+        int max = n.getValor();
+        if (n.getProximo() == null){
+            max = n.getValor();
+            return max;
+        }
+        else if (n.getProximo().getValor() <= n.getValor()){
+            max = n.getValor();
+            return max;
+        }
+        else {
+            return max(n.getProximo());
+        }
+        
+    }
+
+
+
+
+
 
     public static void main(String[] args) {
         ListaLigada r = new ListaLigada();
@@ -102,7 +163,14 @@ public class ListaLigada implements EstruturaDeDados{
         r.insert(20);
         r.insert(30);
         r.delete(40);
+        r.insert(50);
+        r.insert(60);
         System.out.println(r.search(40));
+        System.out.println(r.minimum());
+        System.out.println(r.maximum());
+        System.out.println(r.sucessor(30));
+        System.out.println(r.prodessor(60));
+        
     }
 
     @Override
@@ -127,37 +195,55 @@ public class ListaLigada implements EstruturaDeDados{
 
     @Override
     public boolean search(int chave) {
-        if (inicio == null){
-            return false;
-        }    
-        else if (procura(chave) == true){
-            System.out.println(chave.getValor())
+        if (procura(chave) == true){
             return true;
+        }    
+        else {
+            return false;   
         }
-        return false;   
     }
 
     @Override
     public int minimum() {
-        // TODO Auto-generated method stub
-        return 0;
+        if (inicio == null){
+            return 0;
+        }
+        else{
+            return min(inicio);
+        }
+ 
     }
 
     @Override
     public int maximum() {
-        // TODO Auto-generated method stub
-        return 0;
+        if (inicio == null){
+            return 0;
+        }
+        else{
+            return max(inicio);
+        }
+ 
     }
 
     @Override
     public int sucessor(int chave) {
-        // TODO Auto-generated method stub
-        return 0;
+        int suc = 0;
+        if (inicio == null){
+            return suc;
+        }
+        else {
+           return suc(inicio, chave);
+        }
     }
 
     @Override
     public int prodessor(int chave) {
-        // TODO Auto-generated method stub
-        return 0;
+        int ant = 0;
+        if (inicio == null){
+            return ant;
+        }
+        else {
+           return ant(inicio, chave);
+        }
     }
 }
